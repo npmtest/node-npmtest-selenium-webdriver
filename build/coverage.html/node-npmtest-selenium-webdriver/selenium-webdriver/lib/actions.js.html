@@ -1,0 +1,2039 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-selenium-webdriver/selenium-webdriver/lib/actions.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-selenium-webdriver">npmtest-selenium-webdriver (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-selenium-webdriver/selenium-webdriver/lib/actions.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">8.16% <small>(8 / 98)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">8.16% <small>(8 / 98)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-selenium-webdriver/selenium-webdriver/lib/</a> &#187; actions.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Licensed to the Software Freedom Conservancy (SFC) under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The SFC licenses this file
+// to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+&nbsp;
+'use strict';
+&nbsp;
+const command = require('./command');
+const error = require('./error');
+const input = require('./input');
+&nbsp;
+&nbsp;
+/**
+ * @param {!IArrayLike} args .
+ * @return {!Array} .
+ */
+<span class="fstat-no" title="function not covered" >function flatten(args) {</span>
+<span class="cstat-no" title="statement not covered" >  let result = [];</span>
+<span class="cstat-no" title="statement not covered" >  for (let i = 0; i &lt; args.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >    let element = args[i];</span>
+<span class="cstat-no" title="statement not covered" >    if (Array.isArray(element)) {</span>
+<span class="cstat-no" title="statement not covered" >      result.push.apply(result, flatten(element));</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      result.push(element);</span>
+    }
+  }
+<span class="cstat-no" title="statement not covered" >  return result;</span>
+}
+&nbsp;
+&nbsp;
+const MODIFIER_KEYS = new Set([
+  input.Key.ALT,
+  input.Key.CONTROL,
+  input.Key.SHIFT,
+  input.Key.COMMAND
+]);
+&nbsp;
+&nbsp;
+/**
+ * Checks that a key is a modifier key.
+ * @param {!input.Key} key The key to check.
+ * @throws {error.InvalidArgumentError} If the key is not a modifier key.
+ * @private
+ */
+<span class="fstat-no" title="function not covered" >function checkModifierKey(key) {</span>
+<span class="cstat-no" title="statement not covered" >  if (!MODIFIER_KEYS.has(key)) {</span>
+<span class="cstat-no" title="statement not covered" >    throw new error.InvalidArgumentError('Not a modifier key');</span>
+  }
+}
+&nbsp;
+&nbsp;
+/**
+ * Class for defining sequences of complex user interactions. Each sequence
+ * will not be executed until {@link #perform} is called.
+ *
+ * This class should not be instantiated directly. Instead, obtain an instance
+ * using {@link ./webdriver.WebDriver#actions() WebDriver.actions()}.
+ *
+ * Sample usage:
+ *
+ *     driver.actions().
+ *         keyDown(Key.SHIFT).
+ *         click(element1).
+ *         click(element2).
+ *         dragAndDrop(element3, element4).
+ *         keyUp(Key.SHIFT).
+ *         perform();
+ *
+ */
+class ActionSequence {
+  /**
+   * @param {!./webdriver.WebDriver} driver The driver that should be used to
+   *     perform this action sequence.
+   */
+  constructor<span class="fstat-no" title="function not covered" >(driver) {</span>
+    /** @private {!./webdriver.WebDriver} */
+<span class="cstat-no" title="statement not covered" >    this.driver_ = driver;</span>
+&nbsp;
+    /** @private {!Array&lt;{description: string, command: !command.Command}&gt;} */
+<span class="cstat-no" title="statement not covered" >    this.actions_ = [];</span>
+  }
+&nbsp;
+  /**
+   * Schedules an action to be executed each time {@link #perform} is called on
+   * this instance.
+   *
+   * @param {string} description A description of the command.
+   * @param {!command.Command} command The command.
+   * @private
+   */
+  schedule_<span class="fstat-no" title="function not covered" >(description, command) {</span>
+<span class="cstat-no" title="statement not covered" >    this.actions_.push({</span>
+      description: description,
+      command: command
+    });
+  }
+&nbsp;
+  /**
+   * Executes this action sequence.
+   *
+   * @return {!./promise.Thenable} A promise that will be resolved once
+   *     this sequence has completed.
+   */
+  perform<span class="fstat-no" title="function not covered" >() {</span>
+    // Make a protected copy of the scheduled actions. This will protect against
+    // users defining additional commands before this sequence is actually
+    // executed.
+<span class="cstat-no" title="statement not covered" >    let actions = this.actions_.concat();</span>
+<span class="cstat-no" title="statement not covered" >    let driver = this.driver_;</span>
+<span class="cstat-no" title="statement not covered" >    return driver.controlFlow().execute(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >      let results = actions.map(action =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        return driver.schedule(action.command, action.description);</span>
+      });
+<span class="cstat-no" title="statement not covered" >      return Promise.all(results);</span>
+    }, 'ActionSequence.perform');
+  }
+&nbsp;
+  /**
+   * Moves the mouse. The location to move to may be specified in terms of the
+   * mouse's current location, an offset relative to the top-left corner of an
+   * element, or an element (in which case the middle of the element is used).
+   *
+   * @param {(!./webdriver.WebElement|{x: number, y: number})} location The
+   *     location to drag to, as either another WebElement or an offset in
+   *     pixels.
+   * @param {{x: number, y: number}=} opt_offset If the target {@code location}
+   *     is defined as a {@link ./webdriver.WebElement}, this parameter defines
+   *     an offset within that element. The offset should be specified in pixels
+   *     relative to the top-left corner of the element's bounding box. If
+   *     omitted, the element's center will be used as the target offset.
+   * @return {!ActionSequence} A self reference.
+   */
+  mouseMove<span class="fstat-no" title="function not covered" >(location, opt_offset) {</span>
+<span class="cstat-no" title="statement not covered" >    let cmd = new command.Command(command.Name.MOVE_TO);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (typeof location.x === 'number') {</span>
+<span class="cstat-no" title="statement not covered" >      setOffset(/** @type {{x: number, y: number}} */(location));</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      cmd.setParameter('element', location.getId());</span>
+<span class="cstat-no" title="statement not covered" >      if (opt_offset) {</span>
+<span class="cstat-no" title="statement not covered" >        setOffset(opt_offset);</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.schedule_('mouseMove', cmd);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+&nbsp;
+    /** @param {{x: number, y: number}} offset The offset to use. */
+<span class="fstat-no" title="function not covered" >    function setOffset(offset) {</span>
+<span class="cstat-no" title="statement not covered" >      cmd.setParameter('xoffset', offset.x || 0);</span>
+<span class="cstat-no" title="statement not covered" >      cmd.setParameter('yoffset', offset.y || 0);</span>
+    }
+  }
+&nbsp;
+  /**
+   * Schedules a mouse action.
+   * @param {string} description A simple descriptive label for the scheduled
+   *     action.
+   * @param {!command.Name} commandName The name of the command.
+   * @param {(./webdriver.WebElement|input.Button)=} opt_elementOrButton Either
+   *     the element to interact with or the button to click with.
+   *     Defaults to {@link input.Button.LEFT} if neither an element nor
+   *     button is specified.
+   * @param {input.Button=} opt_button The button to use. Defaults to
+   *     {@link input.Button.LEFT}. Ignored if the previous argument is
+   *     provided as a button.
+   * @return {!ActionSequence} A self reference.
+   * @private
+   */
+  scheduleMouseAction_<span class="fstat-no" title="function not covered" >(</span>
+      description, commandName, opt_elementOrButton, opt_button) {
+<span class="cstat-no" title="statement not covered" >    let button;</span>
+<span class="cstat-no" title="statement not covered" >    if (typeof opt_elementOrButton === 'number') {</span>
+<span class="cstat-no" title="statement not covered" >      button = opt_elementOrButton;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      if (opt_elementOrButton) {</span>
+<span class="cstat-no" title="statement not covered" >        this.mouseMove(</span>
+            /** @type {!./webdriver.WebElement} */ (opt_elementOrButton));
+      }
+<span class="cstat-no" title="statement not covered" >      button = opt_button !== void(0) ? opt_button : input.Button.LEFT;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    let cmd = new command.Command(commandName).</span>
+        setParameter('button', button);
+<span class="cstat-no" title="statement not covered" >    this.schedule_(description, cmd);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Presses a mouse button. The mouse button will not be released until
+   * {@link #mouseUp} is called, regardless of whether that call is made in this
+   * sequence or another. The behavior for out-of-order events (e.g. mouseDown,
+   * click) is undefined.
+   *
+   * If an element is provided, the mouse will first be moved to the center
+   * of that element. This is equivalent to:
+   *
+   *     sequence.mouseMove(element).mouseDown()
+   *
+   * Warning: this method currently only supports the left mouse button. See
+   * [issue 4047](http://code.google.com/p/selenium/issues/detail?id=4047).
+   *
+   * @param {(./webdriver.WebElement|input.Button)=} opt_elementOrButton Either
+   *     the element to interact with or the button to click with.
+   *     Defaults to {@link input.Button.LEFT} if neither an element nor
+   *     button is specified.
+   * @param {input.Button=} opt_button The button to use. Defaults to
+   *     {@link input.Button.LEFT}. Ignored if a button is provided as the
+   *     first argument.
+   * @return {!ActionSequence} A self reference.
+   */
+  mouseDown<span class="fstat-no" title="function not covered" >(opt_elementOrButton, opt_button) {</span>
+<span class="cstat-no" title="statement not covered" >    return this.scheduleMouseAction_('mouseDown',</span>
+        command.Name.MOUSE_DOWN, opt_elementOrButton, opt_button);
+  }
+&nbsp;
+  /**
+   * Releases a mouse button. Behavior is undefined for calling this function
+   * without a previous call to {@link #mouseDown}.
+   *
+   * If an element is provided, the mouse will first be moved to the center
+   * of that element. This is equivalent to:
+   *
+   *     sequence.mouseMove(element).mouseUp()
+   *
+   * Warning: this method currently only supports the left mouse button. See
+   * [issue 4047](http://code.google.com/p/selenium/issues/detail?id=4047).
+   *
+   * @param {(./webdriver.WebElement|input.Button)=} opt_elementOrButton Either
+   *     the element to interact with or the button to click with.
+   *     Defaults to {@link input.Button.LEFT} if neither an element nor
+   *     button is specified.
+   * @param {input.Button=} opt_button The button to use. Defaults to
+   *     {@link input.Button.LEFT}. Ignored if a button is provided as the
+   *     first argument.
+   * @return {!ActionSequence} A self reference.
+   */
+  mouseUp<span class="fstat-no" title="function not covered" >(opt_elementOrButton, opt_button) {</span>
+<span class="cstat-no" title="statement not covered" >    return this.scheduleMouseAction_('mouseUp',</span>
+        command.Name.MOUSE_UP, opt_elementOrButton, opt_button);
+  }
+&nbsp;
+  /**
+   * Convenience function for performing a "drag and drop" manuever. The target
+   * element may be moved to the location of another element, or by an offset (in
+   * pixels).
+   *
+   * @param {!./webdriver.WebElement} element The element to drag.
+   * @param {(!./webdriver.WebElement|{x: number, y: number})} location The
+   *     location to drag to, either as another WebElement or an offset in
+   *     pixels.
+   * @return {!ActionSequence} A self reference.
+   */
+  dragAndDrop<span class="fstat-no" title="function not covered" >(element, location) {</span>
+<span class="cstat-no" title="statement not covered" >    return this.mouseDown(element).mouseMove(location).mouseUp();</span>
+  }
+&nbsp;
+  /**
+   * Clicks a mouse button.
+   *
+   * If an element is provided, the mouse will first be moved to the center
+   * of that element. This is equivalent to:
+   *
+   *     sequence.mouseMove(element).click()
+   *
+   * @param {(./webdriver.WebElement|input.Button)=} opt_elementOrButton Either
+   *     the element to interact with or the button to click with.
+   *     Defaults to {@link input.Button.LEFT} if neither an element nor
+   *     button is specified.
+   * @param {input.Button=} opt_button The button to use. Defaults to
+   *     {@link input.Button.LEFT}. Ignored if a button is provided as the
+   *     first argument.
+   * @return {!ActionSequence} A self reference.
+   */
+  click<span class="fstat-no" title="function not covered" >(opt_elementOrButton, opt_button) {</span>
+<span class="cstat-no" title="statement not covered" >    return this.scheduleMouseAction_('click',</span>
+        command.Name.CLICK, opt_elementOrButton, opt_button);
+  }
+&nbsp;
+  /**
+   * Double-clicks a mouse button.
+   *
+   * If an element is provided, the mouse will first be moved to the center of
+   * that element. This is equivalent to:
+   *
+   *     sequence.mouseMove(element).doubleClick()
+   *
+   * Warning: this method currently only supports the left mouse button. See
+   * [issue 4047](http://code.google.com/p/selenium/issues/detail?id=4047).
+   *
+   * @param {(./webdriver.WebElement|input.Button)=} opt_elementOrButton Either
+   *     the element to interact with or the button to click with.
+   *     Defaults to {@link input.Button.LEFT} if neither an element nor
+   *     button is specified.
+   * @param {input.Button=} opt_button The button to use. Defaults to
+   *     {@link input.Button.LEFT}. Ignored if a button is provided as the
+   *     first argument.
+   * @return {!ActionSequence} A self reference.
+   */
+  doubleClick<span class="fstat-no" title="function not covered" >(opt_elementOrButton, opt_button) {</span>
+<span class="cstat-no" title="statement not covered" >    return this.scheduleMouseAction_('doubleClick',</span>
+        command.Name.DOUBLE_CLICK, opt_elementOrButton, opt_button);
+  }
+&nbsp;
+  /**
+   * Schedules a keyboard action.
+   *
+   * @param {string} description A simple descriptive label for the scheduled
+   *     action.
+   * @param {!Array&lt;(string|!input.Key)&gt;} keys The keys to send.
+   * @return {!ActionSequence} A self reference.
+   * @private
+   */
+  scheduleKeyboardAction_<span class="fstat-no" title="function not covered" >(description, keys) {</span>
+<span class="cstat-no" title="statement not covered" >    let cmd = new command.Command(command.Name.SEND_KEYS_TO_ACTIVE_ELEMENT)</span>
+        .setParameter('value', keys);
+<span class="cstat-no" title="statement not covered" >    this.schedule_(description, cmd);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Performs a modifier key press. The modifier key is &lt;em&gt;not released&lt;/em&gt;
+   * until {@link #keyUp} or {@link #sendKeys} is called. The key press will be
+   * targeted at the currently focused element.
+   *
+   * @param {!input.Key} key The modifier key to push. Must be one of
+   *     {ALT, CONTROL, SHIFT, COMMAND, META}.
+   * @return {!ActionSequence} A self reference.
+   * @throws {error.InvalidArgumentError} If the key is not a valid modifier
+   *     key.
+   */
+  keyDown<span class="fstat-no" title="function not covered" >(key) {</span>
+<span class="cstat-no" title="statement not covered" >    checkModifierKey(key);</span>
+<span class="cstat-no" title="statement not covered" >    return this.scheduleKeyboardAction_('keyDown', [key]);</span>
+  }
+&nbsp;
+  /**
+   * Performs a modifier key release. The release is targeted at the currently
+   * focused element.
+   * @param {!input.Key} key The modifier key to release. Must be one of
+   *     {ALT, CONTROL, SHIFT, COMMAND, META}.
+   * @return {!ActionSequence} A self reference.
+   * @throws {error.InvalidArgumentError} If the key is not a valid modifier
+   *     key.
+   */
+  keyUp<span class="fstat-no" title="function not covered" >(key) {</span>
+<span class="cstat-no" title="statement not covered" >    checkModifierKey(key);</span>
+<span class="cstat-no" title="statement not covered" >    return this.scheduleKeyboardAction_('keyUp', [key]);</span>
+  }
+&nbsp;
+  /**
+   * Simulates typing multiple keys. Each modifier key encountered in the
+   * sequence will not be released until it is encountered again. All key events
+   * will be targeted at the currently focused element.
+   *
+   * @param {...(string|!input.Key|!Array&lt;(string|!input.Key)&gt;)} var_args
+   *     The keys to type.
+   * @return {!ActionSequence} A self reference.
+   * @throws {Error} If the key is not a valid modifier key.
+   */
+  sendKeys<span class="fstat-no" title="function not covered" >(var_args) {</span>
+<span class="cstat-no" title="statement not covered" >    let keys = flatten(arguments);</span>
+<span class="cstat-no" title="statement not covered" >    return this.scheduleKeyboardAction_('sendKeys', keys);</span>
+  }
+}
+&nbsp;
+&nbsp;
+/**
+ * Class for defining sequences of user touch interactions. Each sequence
+ * will not be executed until {@link #perform} is called.
+ *
+ * This class should not be instantiated directly. Instead, obtain an instance
+ * using {@link ./webdriver.WebDriver#touchActions() WebDriver.touchActions()}.
+ *
+ * Sample usage:
+ *
+ *     driver.touchActions().
+ *         tapAndHold({x: 0, y: 0}).
+ *         move({x: 3, y: 4}).
+ *         release({x: 10, y: 10}).
+ *         perform();
+ *
+ */
+class TouchSequence {
+  /**
+   * @param {!./webdriver.WebDriver} driver The driver that should be used to
+   *     perform this action sequence.
+   */
+  constructor<span class="fstat-no" title="function not covered" >(driver) {</span>
+    /** @private {!./webdriver.WebDriver} */
+<span class="cstat-no" title="statement not covered" >    this.driver_ = driver;</span>
+&nbsp;
+    /** @private {!Array&lt;{description: string, command: !command.Command}&gt;} */
+<span class="cstat-no" title="statement not covered" >    this.actions_ = [];</span>
+  }
+&nbsp;
+  /**
+   * Schedules an action to be executed each time {@link #perform} is called on
+   * this instance.
+   * @param {string} description A description of the command.
+   * @param {!command.Command} command The command.
+   * @private
+   */
+  schedule_<span class="fstat-no" title="function not covered" >(description, command) {</span>
+<span class="cstat-no" title="statement not covered" >    this.actions_.push({</span>
+      description: description,
+      command: command
+    });
+  }
+&nbsp;
+  /**
+   * Executes this action sequence.
+   * @return {!./promise.Thenable} A promise that will be resolved once
+   *     this sequence has completed.
+   */
+  perform<span class="fstat-no" title="function not covered" >() {</span>
+    // Make a protected copy of the scheduled actions. This will protect against
+    // users defining additional commands before this sequence is actually
+    // executed.
+<span class="cstat-no" title="statement not covered" >    let actions = this.actions_.concat();</span>
+<span class="cstat-no" title="statement not covered" >    let driver = this.driver_;</span>
+<span class="cstat-no" title="statement not covered" >    return driver.controlFlow().execute(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >      let results = actions.map(action =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        return driver.schedule(action.command, action.description);</span>
+      });
+<span class="cstat-no" title="statement not covered" >      return Promise.all(results);</span>
+    }, 'TouchSequence.perform');
+  }
+&nbsp;
+  /**
+   * Taps an element.
+   *
+   * @param {!./webdriver.WebElement} elem The element to tap.
+   * @return {!TouchSequence} A self reference.
+   */
+  tap<span class="fstat-no" title="function not covered" >(elem) {</span>
+<span class="cstat-no" title="statement not covered" >    let cmd = new command.Command(command.Name.TOUCH_SINGLE_TAP).</span>
+        setParameter('element', elem.getId());
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.schedule_('tap', cmd);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Double taps an element.
+   *
+   * @param {!./webdriver.WebElement} elem The element to double tap.
+   * @return {!TouchSequence} A self reference.
+   */
+  doubleTap<span class="fstat-no" title="function not covered" >(elem) {</span>
+<span class="cstat-no" title="statement not covered" >    let cmd = new command.Command(command.Name.TOUCH_DOUBLE_TAP).</span>
+        setParameter('element', elem.getId());
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.schedule_('doubleTap', cmd);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Long press on an element.
+   *
+   * @param {!./webdriver.WebElement} elem The element to long press.
+   * @return {!TouchSequence} A self reference.
+   */
+  longPress<span class="fstat-no" title="function not covered" >(elem) {</span>
+<span class="cstat-no" title="statement not covered" >    let cmd = new command.Command(command.Name.TOUCH_LONG_PRESS).</span>
+        setParameter('element', elem.getId());
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.schedule_('longPress', cmd);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Touch down at the given location.
+   *
+   * @param {{x: number, y: number}} location The location to touch down at.
+   * @return {!TouchSequence} A self reference.
+   */
+  tapAndHold<span class="fstat-no" title="function not covered" >(location) {</span>
+<span class="cstat-no" title="statement not covered" >    let cmd = new command.Command(command.Name.TOUCH_DOWN).</span>
+        setParameter('x', location.x).
+        setParameter('y', location.y);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.schedule_('tapAndHold', cmd);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Move a held {@linkplain #tapAndHold touch} to the specified location.
+   *
+   * @param {{x: number, y: number}} location The location to move to.
+   * @return {!TouchSequence} A self reference.
+   */
+  move<span class="fstat-no" title="function not covered" >(location) {</span>
+<span class="cstat-no" title="statement not covered" >    let cmd = new command.Command(command.Name.TOUCH_MOVE).</span>
+        setParameter('x', location.x).
+        setParameter('y', location.y);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.schedule_('move', cmd);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Release a held {@linkplain #tapAndHold touch} at the specified location.
+   *
+   * @param {{x: number, y: number}} location The location to release at.
+   * @return {!TouchSequence} A self reference.
+   */
+  release<span class="fstat-no" title="function not covered" >(location) {</span>
+<span class="cstat-no" title="statement not covered" >    let cmd = new command.Command(command.Name.TOUCH_UP).</span>
+        setParameter('x', location.x).
+        setParameter('y', location.y);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.schedule_('release', cmd);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Scrolls the touch screen by the given offset.
+   *
+   * @param {{x: number, y: number}} offset The offset to scroll to.
+   * @return {!TouchSequence} A self reference.
+   */
+  scroll<span class="fstat-no" title="function not covered" >(offset) {</span>
+<span class="cstat-no" title="statement not covered" >    let cmd = new command.Command(command.Name.TOUCH_SCROLL).</span>
+        setParameter('xoffset', offset.x).
+        setParameter('yoffset', offset.y);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.schedule_('scroll', cmd);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Scrolls the touch screen, starting on `elem` and moving by the specified
+   * offset.
+   *
+   * @param {!./webdriver.WebElement} elem The element where scroll starts.
+   * @param {{x: number, y: number}} offset The offset to scroll to.
+   * @return {!TouchSequence} A self reference.
+   */
+  scrollFromElement<span class="fstat-no" title="function not covered" >(elem, offset) {</span>
+<span class="cstat-no" title="statement not covered" >    let cmd = new command.Command(command.Name.TOUCH_SCROLL).</span>
+        setParameter('element', elem.getId()).
+        setParameter('xoffset', offset.x).
+        setParameter('yoffset', offset.y);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.schedule_('scrollFromElement', cmd);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Flick, starting anywhere on the screen, at speed xspeed and yspeed.
+   *
+   * @param {{xspeed: number, yspeed: number}} speed The speed to flick in each
+         direction, in pixels per second.
+   * @return {!TouchSequence} A self reference.
+   */
+  flick<span class="fstat-no" title="function not covered" >(speed) {</span>
+<span class="cstat-no" title="statement not covered" >    let cmd = new command.Command(command.Name.TOUCH_FLICK).</span>
+        setParameter('xspeed', speed.xspeed).
+        setParameter('yspeed', speed.yspeed);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.schedule_('flick', cmd);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Flick starting at elem and moving by x and y at specified speed.
+   *
+   * @param {!./webdriver.WebElement} elem The element where flick starts.
+   * @param {{x: number, y: number}} offset The offset to flick to.
+   * @param {number} speed The speed to flick at in pixels per second.
+   * @return {!TouchSequence} A self reference.
+   */
+  flickElement<span class="fstat-no" title="function not covered" >(elem, offset, speed) {</span>
+<span class="cstat-no" title="statement not covered" >    let cmd = new command.Command(command.Name.TOUCH_FLICK).</span>
+        setParameter('element', elem.getId()).
+        setParameter('xoffset', offset.x).
+        setParameter('yoffset', offset.y).
+        setParameter('speed', speed);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.schedule_('flickElement', cmd);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+}
+&nbsp;
+&nbsp;
+// PUBLIC API
+&nbsp;
+module.exports = {
+  ActionSequence: ActionSequence,
+  TouchSequence: TouchSequence,
+};
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 11 2017 07:18:48 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>

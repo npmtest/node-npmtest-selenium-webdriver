@@ -1,0 +1,2300 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-selenium-webdriver/selenium-webdriver/index.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-selenium-webdriver">npmtest-selenium-webdriver (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-selenium-webdriver/selenium-webdriver/index.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">28.8% <small>(53 / 184)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 66)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 33)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">28.8% <small>(53 / 184)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-selenium-webdriver/selenium-webdriver/</a> &#187; index.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Licensed to the Software Freedom Conservancy (SFC) under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The SFC licenses this file
+// to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+&nbsp;
+/**
+ * @fileoverview The main user facing module. Exports WebDriver's primary
+ * public API and provides convenience assessors to certain sub-modules.
+ */
+&nbsp;
+'use strict';
+&nbsp;
+const chrome = require('./chrome');
+const edge = require('./edge');
+const firefox = require('./firefox');
+const _http = require('./http');
+const ie = require('./ie');
+const actions = require('./lib/actions');
+const by = require('./lib/by');
+const capabilities = require('./lib/capabilities');
+const command = require('./lib/command');
+const error = require('./lib/error');
+const events = require('./lib/events');
+const input = require('./lib/input');
+const logging = require('./lib/logging');
+const promise = require('./lib/promise');
+const session = require('./lib/session');
+const until = require('./lib/until');
+const webdriver = require('./lib/webdriver');
+const opera = require('./opera');
+const phantomjs = require('./phantomjs');
+const remote = require('./remote');
+const safari = require('./safari');
+&nbsp;
+const Browser = capabilities.Browser;
+const Capabilities = capabilities.Capabilities;
+const Capability = capabilities.Capability;
+const Session = session.Session;
+const WebDriver = webdriver.WebDriver;
+&nbsp;
+&nbsp;
+&nbsp;
+var seleniumServer;
+&nbsp;
+/**
+ * Starts an instance of the Selenium server if not yet running.
+ * @param {string} jar Path to the server jar to use.
+ * @return {!Promise&lt;string&gt;} A promise for the server's
+ *     address once started.
+ */
+<span class="fstat-no" title="function not covered" >function startSeleniumServer(jar) {</span>
+<span class="cstat-no" title="statement not covered" >  if (!seleniumServer) {</span>
+<span class="cstat-no" title="statement not covered" >    seleniumServer = new remote.SeleniumServer(jar);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return seleniumServer.start();</span>
+}
+&nbsp;
+&nbsp;
+/**
+ * {@linkplain webdriver.WebDriver#setFileDetector WebDriver's setFileDetector}
+ * method uses a non-standard command to transfer files from the local client
+ * to the remote end hosting the browser. Many of the WebDriver sub-types, like
+ * the {@link chrome.Driver} and {@link firefox.Driver}, do not support this
+ * command. Thus, these classes override the `setFileDetector` to no-op.
+ *
+ * This function uses a mixin to re-enable `setFileDetector` by calling the
+ * original method on the WebDriver prototype directly. This is used only when
+ * the builder creates a Chrome or Firefox instance that communicates with a
+ * remote end (and thus, support for remote file detectors is unknown).
+ *
+ * @param {function(new: webdriver.WebDriver, ...?)} ctor
+ * @return {function(new: webdriver.WebDriver, ...?)}
+ */
+<span class="fstat-no" title="function not covered" >function ensureFileDetectorsAreEnabled(ctor) {</span>
+<span class="cstat-no" title="statement not covered" >  const mixin = class extends ctor {</span>
+    /** @param {input.FileDetector} detector */
+    setFileDetector<span class="fstat-no" title="function not covered" >(detector) {</span>
+<span class="cstat-no" title="statement not covered" >      webdriver.WebDriver.prototype.setFileDetector.call(this, detector);</span>
+    }
+  };
+<span class="cstat-no" title="statement not covered" >  return mixin;</span>
+}
+&nbsp;
+&nbsp;
+/**
+ * A thenable wrapper around a {@linkplain webdriver.IWebDriver IWebDriver}
+ * instance that allows commands to be issued directly instead of having to
+ * repeatedly call `then`:
+ *
+ *     let driver = new Builder().build();
+ *     driver.then(d =&gt; d.get(url));  // You can do this...
+ *     driver.get(url);               // ...or this
+ *
+ * If the driver instance fails to resolve (e.g. the session cannot be created),
+ * every issued command will fail.
+ *
+ * @extends {webdriver.IWebDriver}
+ * @extends {promise.CancellableThenable&lt;!webdriver.IWebDriver&gt;}
+ * @interface
+ */
+class ThenableWebDriver {
+  /** @param {...?} args */
+  static createSession<span class="fstat-no" title="function not covered" >(...args) {</span>}
+}
+&nbsp;
+&nbsp;
+/**
+ * @const {!Map&lt;function(new: WebDriver, !IThenable&lt;!Session&gt;, ...?),
+ *              function(new: ThenableWebDriver, !IThenable&lt;!Session&gt;, ...?)&gt;}
+ */
+const THENABLE_DRIVERS = new Map;
+&nbsp;
+&nbsp;
+/**
+ * @param {function(new: WebDriver, !IThenable&lt;!Session&gt;, ...?)} ctor
+ * @param {...?} args
+ * @return {!ThenableWebDriver}
+ */
+<span class="fstat-no" title="function not covered" >function createDriver(ctor, ...args) {</span>
+<span class="cstat-no" title="statement not covered" >  let thenableWebDriverProxy = THENABLE_DRIVERS.get(ctor);</span>
+<span class="cstat-no" title="statement not covered" >  if (!thenableWebDriverProxy) {</span>
+    /** @implements {ThenableWebDriver} */
+<span class="cstat-no" title="statement not covered" >    thenableWebDriverProxy = class extends ctor {</span>
+      /**
+       * @param {!IThenable&lt;!Session&gt;} session
+       * @param {...?} rest
+       */
+      constructor<span class="fstat-no" title="function not covered" >(session, ...rest) {</span>
+<span class="cstat-no" title="statement not covered" >        super(session, ...rest);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        const pd = this.getSession().then(session =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          return new ctor(session, ...rest);</span>
+        });
+&nbsp;
+        /**
+         * @param {(string|Error)=} opt_reason
+         * @override
+         */
+<span class="cstat-no" title="statement not covered" >        this.cancel = <span class="fstat-no" title="function not covered" >function(opt_reason) {</span></span>
+<span class="cstat-no" title="statement not covered" >          if (promise.CancellableThenable.isImplementation(pd)) {</span>
+            /** @type {!promise.CancellableThenable} */<span class="cstat-no" title="statement not covered" >(pd).cancel(opt_reason);</span>
+          }
+        };
+&nbsp;
+        /** @override */
+<span class="cstat-no" title="statement not covered" >        this.then = pd.then.bind(pd);</span>
+&nbsp;
+        /** @override */
+<span class="cstat-no" title="statement not covered" >        this.catch = pd.then.bind(pd);</span>
+      }
+    };
+<span class="cstat-no" title="statement not covered" >    promise.CancellableThenable.addImplementation(thenableWebDriverProxy);</span>
+<span class="cstat-no" title="statement not covered" >    THENABLE_DRIVERS.set(ctor, thenableWebDriverProxy);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return thenableWebDriverProxy.createSession(...args);</span>
+}
+&nbsp;
+&nbsp;
+/**
+ * Creates new {@link webdriver.WebDriver WebDriver} instances. The environment
+ * variables listed below may be used to override a builder's configuration,
+ * allowing quick runtime changes.
+ *
+ * - {@code SELENIUM_BROWSER}: defines the target browser in the form
+ *   {@code browser[:version][:platform]}.
+ *
+ * - {@code SELENIUM_REMOTE_URL}: defines the remote URL for all builder
+ *   instances. This environment variable should be set to a fully qualified
+ *   URL for a WebDriver server (e.g. http://localhost:4444/wd/hub). This
+ *   option always takes precedence over {@code SELENIUM_SERVER_JAR}.
+ *
+ * - {@code SELENIUM_SERVER_JAR}: defines the path to the
+ *   &lt;a href="http://selenium-release.storage.googleapis.com/index.html"&gt;
+ *   standalone Selenium server&lt;/a&gt; jar to use. The server will be started the
+ *   first time a WebDriver instance and be killed when the process exits.
+ *
+ * Suppose you had mytest.js that created WebDriver with
+ *
+ *     var driver = new webdriver.Builder()
+ *         .forBrowser('chrome')
+ *         .build();
+ *
+ * This test could be made to use Firefox on the local machine by running with
+ * `SELENIUM_BROWSER=firefox node mytest.js`. Rather than change the code to
+ * target Google Chrome on a remote machine, you can simply set the
+ * `SELENIUM_BROWSER` and `SELENIUM_REMOTE_URL` environment variables:
+ *
+ *     SELENIUM_BROWSER=chrome:36:LINUX \
+ *     SELENIUM_REMOTE_URL=http://www.example.com:4444/wd/hub \
+ *     node mytest.js
+ *
+ * You could also use a local copy of the standalone Selenium server:
+ *
+ *     SELENIUM_BROWSER=chrome:36:LINUX \
+ *     SELENIUM_SERVER_JAR=/path/to/selenium-server-standalone.jar \
+ *     node mytest.js
+ */
+class Builder {
+  constructor<span class="fstat-no" title="function not covered" >() {</span>
+    /** @private @const */
+<span class="cstat-no" title="statement not covered" >    this.log_ = logging.getLogger('webdriver.Builder');</span>
+&nbsp;
+    /** @private {promise.ControlFlow} */
+<span class="cstat-no" title="statement not covered" >    this.flow_ = null;</span>
+&nbsp;
+    /** @private {string} */
+<span class="cstat-no" title="statement not covered" >    this.url_ = '';</span>
+&nbsp;
+    /** @private {?string} */
+<span class="cstat-no" title="statement not covered" >    this.proxy_ = null;</span>
+&nbsp;
+    /** @private {!Capabilities} */
+<span class="cstat-no" title="statement not covered" >    this.capabilities_ = new Capabilities();</span>
+&nbsp;
+    /** @private {chrome.Options} */
+<span class="cstat-no" title="statement not covered" >    this.chromeOptions_ = null;</span>
+&nbsp;
+    /** @private {firefox.Options} */
+<span class="cstat-no" title="statement not covered" >    this.firefoxOptions_ = null;</span>
+&nbsp;
+    /** @private {opera.Options} */
+<span class="cstat-no" title="statement not covered" >    this.operaOptions_ = null;</span>
+&nbsp;
+    /** @private {ie.Options} */
+<span class="cstat-no" title="statement not covered" >    this.ieOptions_ = null;</span>
+&nbsp;
+    /** @private {safari.Options} */
+<span class="cstat-no" title="statement not covered" >    this.safariOptions_ = null;</span>
+&nbsp;
+    /** @private {edge.Options} */
+<span class="cstat-no" title="statement not covered" >    this.edgeOptions_ = null;</span>
+&nbsp;
+    /** @private {boolean} */
+<span class="cstat-no" title="statement not covered" >    this.ignoreEnv_ = false;</span>
+&nbsp;
+    /** @private {http.Agent} */
+<span class="cstat-no" title="statement not covered" >    this.agent_ = null;</span>
+  }
+&nbsp;
+  /**
+   * Configures this builder to ignore any environment variable overrides and to
+   * only use the configuration specified through this instance's API.
+   *
+   * @return {!Builder} A self reference.
+   */
+  disableEnvironmentOverrides<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >    this.ignoreEnv_ = true;</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Sets the URL of a remote WebDriver server to use. Once a remote URL has
+   * been specified, the builder direct all new clients to that server. If this
+   * method is never called, the Builder will attempt to create all clients
+   * locally.
+   *
+   * As an alternative to this method, you may also set the
+   * `SELENIUM_REMOTE_URL` environment variable.
+   *
+   * @param {string} url The URL of a remote server to use.
+   * @return {!Builder} A self reference.
+   */
+  usingServer<span class="fstat-no" title="function not covered" >(url) {</span>
+<span class="cstat-no" title="statement not covered" >    this.url_ = url;</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * @return {string} The URL of the WebDriver server this instance is
+   *     configured to use.
+   */
+  getServerUrl<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >    return this.url_;</span>
+  }
+&nbsp;
+  /**
+   * Sets the URL of the proxy to use for the WebDriver's HTTP connections.
+   * If this method is never called, the Builder will create a connection
+   * without a proxy.
+   *
+   * @param {string} proxy The URL of a proxy to use.
+   * @return {!Builder} A self reference.
+   */
+  usingWebDriverProxy<span class="fstat-no" title="function not covered" >(proxy) {</span>
+<span class="cstat-no" title="statement not covered" >    this.proxy_ = proxy;</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * @return {?string} The URL of the proxy server to use for the WebDriver's
+   *    HTTP connections, or `null` if not set.
+   */
+  getWebDriverProxy<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >    return this.proxy_;</span>
+  }
+&nbsp;
+  /**
+   * Sets the http agent to use for each request.
+   * If this method is not called, the Builder will use http.globalAgent by default.
+   *
+   * @param {http.Agent} agent The agent to use for each request.
+   * @return {!Builder} A self reference.
+   */
+  usingHttpAgent<span class="fstat-no" title="function not covered" >(agent) {</span>
+<span class="cstat-no" title="statement not covered" >    this.agent_ = agent;</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * @return {http.Agent} The http agent used for each request
+   */
+  getHttpAgent<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >    return this.agent_;</span>
+  }
+&nbsp;
+  /**
+   * Sets the desired capabilities when requesting a new session. This will
+   * overwrite any previously set capabilities.
+   * @param {!(Object|Capabilities)} capabilities The desired capabilities for
+   *     a new session.
+   * @return {!Builder} A self reference.
+   */
+  withCapabilities<span class="fstat-no" title="function not covered" >(capabilities) {</span>
+<span class="cstat-no" title="statement not covered" >    this.capabilities_ = new Capabilities(capabilities);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Returns the base set of capabilities this instance is currently configured
+   * to use.
+   * @return {!Capabilities} The current capabilities for this builder.
+   */
+  getCapabilities<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >    return this.capabilities_;</span>
+  }
+&nbsp;
+  /**
+   * Configures the target browser for clients created by this instance.
+   * Any calls to {@link #withCapabilities} after this function will
+   * overwrite these settings.
+   *
+   * You may also define the target browser using the {@code SELENIUM_BROWSER}
+   * environment variable. If set, this environment variable should be of the
+   * form `browser[:[version][:platform]]`.
+   *
+   * @param {(string|Browser)} name The name of the target browser;
+   *     common defaults are available on the {@link webdriver.Browser} enum.
+   * @param {string=} opt_version A desired version; may be omitted if any
+   *     version should be used.
+   * @param {string=} opt_platform The desired platform; may be omitted if any
+   *     version may be used.
+   * @return {!Builder} A self reference.
+   */
+  forBrowser<span class="fstat-no" title="function not covered" >(name, opt_version, opt_platform) {</span>
+<span class="cstat-no" title="statement not covered" >    this.capabilities_.set(Capability.BROWSER_NAME, name);</span>
+<span class="cstat-no" title="statement not covered" >    this.capabilities_.set(Capability.VERSION, opt_version || null);</span>
+<span class="cstat-no" title="statement not covered" >    this.capabilities_.set(Capability.PLATFORM, opt_platform || null);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Sets the proxy configuration for the target browser.
+   * Any calls to {@link #withCapabilities} after this function will
+   * overwrite these settings.
+   *
+   * @param {!capabilities.ProxyConfig} config The configuration to use.
+   * @return {!Builder} A self reference.
+   */
+  setProxy<span class="fstat-no" title="function not covered" >(config) {</span>
+<span class="cstat-no" title="statement not covered" >    this.capabilities_.setProxy(config);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Sets the logging preferences for the created session. Preferences may be
+   * changed by repeated calls, or by calling {@link #withCapabilities}.
+   * @param {!(./lib/logging.Preferences|Object&lt;string, string&gt;)} prefs The
+   *     desired logging preferences.
+   * @return {!Builder} A self reference.
+   */
+  setLoggingPrefs<span class="fstat-no" title="function not covered" >(prefs) {</span>
+<span class="cstat-no" title="statement not covered" >    this.capabilities_.setLoggingPrefs(prefs);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Sets whether native events should be used.
+   * @param {boolean} enabled Whether to enable native events.
+   * @return {!Builder} A self reference.
+   */
+  setEnableNativeEvents<span class="fstat-no" title="function not covered" >(enabled) {</span>
+<span class="cstat-no" title="statement not covered" >    this.capabilities_.setEnableNativeEvents(enabled);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Sets how elements should be scrolled into view for interaction.
+   * @param {number} behavior The desired scroll behavior: either 0 to align
+   *     with the top of the viewport or 1 to align with the bottom.
+   * @return {!Builder} A self reference.
+   */
+  setScrollBehavior<span class="fstat-no" title="function not covered" >(behavior) {</span>
+<span class="cstat-no" title="statement not covered" >    this.capabilities_.setScrollBehavior(behavior);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Sets the default action to take with an unexpected alert before returning
+   * an error.
+   * @param {string} behavior The desired behavior; should be "accept",
+   *     "dismiss", or "ignore". Defaults to "dismiss".
+   * @return {!Builder} A self reference.
+   */
+  setAlertBehavior<span class="fstat-no" title="function not covered" >(behavior) {</span>
+<span class="cstat-no" title="statement not covered" >    this.capabilities_.setAlertBehavior(behavior);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Sets Chrome specific {@linkplain chrome.Options options} for drivers
+   * created by this builder. Any logging or proxy settings defined on the given
+   * options will take precedence over those set through
+   * {@link #setLoggingPrefs} and {@link #setProxy}, respectively.
+   *
+   * @param {!chrome.Options} options The ChromeDriver options to use.
+   * @return {!Builder} A self reference.
+   */
+  setChromeOptions<span class="fstat-no" title="function not covered" >(options) {</span>
+<span class="cstat-no" title="statement not covered" >    this.chromeOptions_ = options;</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Sets Firefox specific {@linkplain firefox.Options options} for drivers
+   * created by this builder. Any logging or proxy settings defined on the given
+   * options will take precedence over those set through
+   * {@link #setLoggingPrefs} and {@link #setProxy}, respectively.
+   *
+   * @param {!firefox.Options} options The FirefoxDriver options to use.
+   * @return {!Builder} A self reference.
+   */
+  setFirefoxOptions<span class="fstat-no" title="function not covered" >(options) {</span>
+<span class="cstat-no" title="statement not covered" >    this.firefoxOptions_ = options;</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * @return {firefox.Options} the Firefox specific options currently configured
+   *     for this instance.
+   */
+  getFirefoxOptions<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >    return this.firefoxOptions_;</span>
+  }
+&nbsp;
+  /**
+   * Sets Opera specific {@linkplain opera.Options options} for drivers created
+   * by this builder. Any logging or proxy settings defined on the given options
+   * will take precedence over those set through {@link #setLoggingPrefs} and
+   * {@link #setProxy}, respectively.
+   *
+   * @param {!opera.Options} options The OperaDriver options to use.
+   * @return {!Builder} A self reference.
+   */
+  setOperaOptions<span class="fstat-no" title="function not covered" >(options) {</span>
+<span class="cstat-no" title="statement not covered" >    this.operaOptions_ = options;</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Set Internet Explorer specific {@linkplain ie.Options options} for drivers
+   * created by this builder. Any proxy settings defined on the given options
+   * will take precedence over those set through {@link #setProxy}.
+   *
+   * @param {!ie.Options} options The IEDriver options to use.
+   * @return {!Builder} A self reference.
+   */
+  setIeOptions<span class="fstat-no" title="function not covered" >(options) {</span>
+<span class="cstat-no" title="statement not covered" >    this.ieOptions_ = options;</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Set {@linkplain edge.Options options} specific to Microsoft's Edge browser
+   * for drivers created by this builder. Any proxy settings defined on the
+   * given options will take precedence over those set through
+   * {@link #setProxy}.
+   *
+   * @param {!edge.Options} options The MicrosoftEdgeDriver options to use.
+   * @return {!Builder} A self reference.
+   */
+  setEdgeOptions<span class="fstat-no" title="function not covered" >(options) {</span>
+<span class="cstat-no" title="statement not covered" >    this.edgeOptions_ = options;</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Sets Safari specific {@linkplain safari.Options options} for drivers
+   * created by this builder. Any logging settings defined on the given options
+   * will take precedence over those set through {@link #setLoggingPrefs}.
+   *
+   * @param {!safari.Options} options The Safari options to use.
+   * @return {!Builder} A self reference.
+   */
+  setSafariOptions<span class="fstat-no" title="function not covered" >(options) {</span>
+<span class="cstat-no" title="statement not covered" >    this.safariOptions_ = options;</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * @return {safari.Options} the Safari specific options currently configured
+   *     for this instance.
+   */
+  getSafariOptions<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >    return this.safariOptions_;</span>
+  }
+&nbsp;
+  /**
+   * Sets the control flow that created drivers should execute actions in. If
+   * the flow is never set, or is set to {@code null}, it will use the active
+   * flow at the time {@link #build()} is called.
+   * @param {promise.ControlFlow} flow The control flow to use, or
+   *     {@code null} to
+   * @return {!Builder} A self reference.
+   */
+  setControlFlow<span class="fstat-no" title="function not covered" >(flow) {</span>
+<span class="cstat-no" title="statement not covered" >    this.flow_ = flow;</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  /**
+   * Creates a new WebDriver client based on this builder's current
+   * configuration.
+   *
+   * This method will return a {@linkplain ThenableWebDriver} instance, allowing
+   * users to issue commands directly without calling `then()`. The returned
+   * thenable wraps a promise that will resolve to a concrete
+   * {@linkplain webdriver.WebDriver WebDriver} instance. The promise will be
+   * rejected if the remote end fails to create a new session.
+   *
+   * @return {!ThenableWebDriver} A new WebDriver instance.
+   * @throws {Error} If the current configuration is invalid.
+   */
+  build<span class="fstat-no" title="function not covered" >() {</span>
+    // Create a copy for any changes we may need to make based on the current
+    // environment.
+<span class="cstat-no" title="statement not covered" >    var capabilities = new Capabilities(this.capabilities_);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var browser;</span>
+<span class="cstat-no" title="statement not covered" >    if (!this.ignoreEnv_ &amp;&amp; process.env.SELENIUM_BROWSER) {</span>
+<span class="cstat-no" title="statement not covered" >      this.log_.fine(`SELENIUM_BROWSER=${process.env.SELENIUM_BROWSER}`);</span>
+<span class="cstat-no" title="statement not covered" >      browser = process.env.SELENIUM_BROWSER.split(/:/, 3);</span>
+<span class="cstat-no" title="statement not covered" >      capabilities.set(Capability.BROWSER_NAME, browser[0]);</span>
+<span class="cstat-no" title="statement not covered" >      capabilities.set(Capability.VERSION, browser[1] || null);</span>
+<span class="cstat-no" title="statement not covered" >      capabilities.set(Capability.PLATFORM, browser[2] || null);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    browser = capabilities.get(Capability.BROWSER_NAME);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (typeof browser !== 'string') {</span>
+<span class="cstat-no" title="statement not covered" >      throw TypeError(</span>
+          `Target browser must be a string, but is &lt;${typeof browser}&gt;;` +
+          ' did you forget to call forBrowser()?');
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (browser === 'ie') {</span>
+<span class="cstat-no" title="statement not covered" >      browser = Browser.INTERNET_EXPLORER;</span>
+    }
+&nbsp;
+    // Apply browser specific overrides.
+<span class="cstat-no" title="statement not covered" >    if (browser === Browser.CHROME &amp;&amp; this.chromeOptions_) {</span>
+<span class="cstat-no" title="statement not covered" >      capabilities.merge(this.chromeOptions_.toCapabilities());</span>
+&nbsp;
+    } else <span class="cstat-no" title="statement not covered" >if (browser === Browser.FIREFOX &amp;&amp; this.firefoxOptions_) {</span>
+<span class="cstat-no" title="statement not covered" >      capabilities.merge(this.firefoxOptions_.toCapabilities());</span>
+&nbsp;
+    } else <span class="cstat-no" title="statement not covered" >if (browser === Browser.INTERNET_EXPLORER &amp;&amp; this.ieOptions_) {</span>
+<span class="cstat-no" title="statement not covered" >      capabilities.merge(this.ieOptions_.toCapabilities());</span>
+&nbsp;
+    } else <span class="cstat-no" title="statement not covered" >if (browser === Browser.OPERA &amp;&amp; this.operaOptions_) {</span>
+<span class="cstat-no" title="statement not covered" >      capabilities.merge(this.operaOptions_.toCapabilities());</span>
+&nbsp;
+    } else <span class="cstat-no" title="statement not covered" >if (browser === Browser.SAFARI &amp;&amp; this.safariOptions_) {</span>
+<span class="cstat-no" title="statement not covered" >      capabilities.merge(this.safariOptions_.toCapabilities());</span>
+&nbsp;
+    } else <span class="cstat-no" title="statement not covered" >if (browser === Browser.EDGE &amp;&amp; this.edgeOptions_) {</span>
+<span class="cstat-no" title="statement not covered" >      capabilities.merge(this.edgeOptions_.toCapabilities());</span>
+    }
+&nbsp;
+    // Check for a remote browser.
+<span class="cstat-no" title="statement not covered" >    let url = this.url_;</span>
+<span class="cstat-no" title="statement not covered" >    if (!this.ignoreEnv_) {</span>
+<span class="cstat-no" title="statement not covered" >      if (process.env.SELENIUM_REMOTE_URL) {</span>
+<span class="cstat-no" title="statement not covered" >        this.log_.fine(</span>
+            `SELENIUM_REMOTE_URL=${process.env.SELENIUM_REMOTE_URL}`);
+<span class="cstat-no" title="statement not covered" >        url = process.env.SELENIUM_REMOTE_URL;</span>
+      } else <span class="cstat-no" title="statement not covered" >if (process.env.SELENIUM_SERVER_JAR) {</span>
+<span class="cstat-no" title="statement not covered" >        this.log_.fine(</span>
+            `SELENIUM_SERVER_JAR=${process.env.SELENIUM_SERVER_JAR}`);
+<span class="cstat-no" title="statement not covered" >        url = startSeleniumServer(process.env.SELENIUM_SERVER_JAR);</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (url) {</span>
+<span class="cstat-no" title="statement not covered" >      this.log_.fine('Creating session on remote server');</span>
+<span class="cstat-no" title="statement not covered" >      let client = Promise.resolve(url)</span>
+          .then(url =&gt; <span class="cstat-no" title="statement not covered" >new _http.HttpClient(url, this.agent_, this.proxy_))</span>;
+<span class="cstat-no" title="statement not covered" >      let executor = new _http.Executor(client);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (browser === Browser.CHROME) {</span>
+<span class="cstat-no" title="statement not covered" >        const driver = ensureFileDetectorsAreEnabled(chrome.Driver);</span>
+<span class="cstat-no" title="statement not covered" >        return createDriver(</span>
+            driver, capabilities, executor, this.flow_);
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (browser === Browser.FIREFOX) {</span>
+<span class="cstat-no" title="statement not covered" >        const driver = ensureFileDetectorsAreEnabled(firefox.Driver);</span>
+<span class="cstat-no" title="statement not covered" >        return createDriver(</span>
+            driver, capabilities, executor, this.flow_);
+      }
+<span class="cstat-no" title="statement not covered" >      return createDriver(</span>
+          WebDriver, executor, capabilities, this.flow_);
+    }
+&nbsp;
+    // Check for a native browser.
+<span class="cstat-no" title="statement not covered" >    switch (browser) {</span>
+      case Browser.CHROME:
+<span class="cstat-no" title="statement not covered" >        return createDriver(chrome.Driver, capabilities, null, this.flow_);</span>
+&nbsp;
+      case Browser.FIREFOX:
+<span class="cstat-no" title="statement not covered" >        return createDriver(firefox.Driver, capabilities, null, this.flow_);</span>
+&nbsp;
+      case Browser.INTERNET_EXPLORER:
+<span class="cstat-no" title="statement not covered" >        return createDriver(ie.Driver, capabilities, this.flow_);</span>
+&nbsp;
+      case Browser.EDGE:
+<span class="cstat-no" title="statement not covered" >        return createDriver(edge.Driver, capabilities, null, this.flow_);</span>
+&nbsp;
+      case Browser.OPERA:
+<span class="cstat-no" title="statement not covered" >        return createDriver(opera.Driver, capabilities, null, this.flow_);</span>
+&nbsp;
+      case Browser.PHANTOM_JS:
+<span class="cstat-no" title="statement not covered" >        return createDriver(phantomjs.Driver, capabilities, this.flow_);</span>
+&nbsp;
+      case Browser.SAFARI:
+<span class="cstat-no" title="statement not covered" >        return createDriver(safari.Driver, capabilities, this.flow_);</span>
+&nbsp;
+      default:
+<span class="cstat-no" title="statement not covered" >        throw new Error('Do not know how to build driver: ' + browser</span>
+            + '; did you forget to call usingServer(url)?');
+    }
+  }
+}
+&nbsp;
+&nbsp;
+// PUBLIC API
+&nbsp;
+&nbsp;
+exports.ActionSequence = actions.ActionSequence;
+exports.Browser = capabilities.Browser;
+exports.Builder = Builder;
+exports.Button = input.Button;
+exports.By = by.By;
+exports.Capabilities = capabilities.Capabilities;
+exports.Capability = capabilities.Capability;
+exports.Condition = webdriver.Condition;
+exports.EventEmitter = events.EventEmitter;
+exports.FileDetector = input.FileDetector;
+exports.Key = input.Key;
+exports.Session = session.Session;
+exports.ThenableWebDriver = ThenableWebDriver;
+exports.TouchSequence = actions.TouchSequence;
+exports.WebDriver = webdriver.WebDriver;
+exports.WebElement = webdriver.WebElement;
+exports.WebElementCondition = webdriver.WebElementCondition;
+exports.WebElementPromise = webdriver.WebElementPromise;
+exports.error = error;
+exports.logging = logging;
+exports.promise = promise;
+exports.until = until;
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 11 2017 07:18:48 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
