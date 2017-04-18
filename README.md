@@ -1,4 +1,7 @@
-# test coverage for  [selenium-webdriver (v3.3.0)](https://github.com/SeleniumHQ/selenium)  [![npm package](https://img.shields.io/npm/v/npmtest-selenium-webdriver.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-selenium-webdriver) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-selenium-webdriver.svg)](https://travis-ci.org/npmtest/node-npmtest-selenium-webdriver)
+# npmtest-selenium-webdriver
+
+#### test coverage for  [selenium-webdriver (v3.3.0)](https://github.com/SeleniumHQ/selenium)  [![npm package](https://img.shields.io/npm/v/npmtest-selenium-webdriver.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-selenium-webdriver) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-selenium-webdriver.svg)](https://travis-ci.org/npmtest/node-npmtest-selenium-webdriver)
+
 #### The official WebDriver JavaScript bindings from the Selenium project
 
 [![NPM](https://nodei.co/npm/selenium-webdriver.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/selenium-webdriver)
@@ -9,9 +12,15 @@
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-selenium-webdriver/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-selenium-webdriver/build/test-report.html)|
 | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-selenium-webdriver/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-selenium-webdriver/tree/gh-pages/build)|
 
+- [https://npmtest.github.io/node-npmtest-selenium-webdriver/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-selenium-webdriver/build/coverage.html/index.html)
+
 [![istanbul-coverage](https://npmtest.github.io/node-npmtest-selenium-webdriver/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fcoverage.lib.html.png)](https://npmtest.github.io/node-npmtest-selenium-webdriver/build/coverage.html/index.html)
 
+- [https://npmtest.github.io/node-npmtest-selenium-webdriver/build/test-report.html](https://npmtest.github.io/node-npmtest-selenium-webdriver/build/test-report.html)
+
 [![test-report](https://npmtest.github.io/node-npmtest-selenium-webdriver/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png)](https://npmtest.github.io/node-npmtest-selenium-webdriver/build/test-report.html)
+
+- [https://npmdoc.github.io/node-npmdoc-selenium-webdriver/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-selenium-webdriver/build/apidoc.html)
 
 [![apidoc](https://npmdoc.github.io/node-npmdoc-selenium-webdriver/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-selenium-webdriver/build/apidoc.html)
 
