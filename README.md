@@ -1,6 +1,6 @@
 # npmtest-selenium-webdriver
 
-#### test coverage for  [selenium-webdriver (v3.3.0)](https://github.com/SeleniumHQ/selenium)  [![npm package](https://img.shields.io/npm/v/npmtest-selenium-webdriver.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-selenium-webdriver) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-selenium-webdriver.svg)](https://travis-ci.org/npmtest/node-npmtest-selenium-webdriver)
+#### basic test coverage for  [selenium-webdriver (v3.4.0)](https://github.com/SeleniumHQ/selenium)  [![npm package](https://img.shields.io/npm/v/npmtest-selenium-webdriver.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-selenium-webdriver) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-selenium-webdriver.svg)](https://travis-ci.org/npmtest/node-npmtest-selenium-webdriver)
 
 #### The official WebDriver JavaScript bindings from the Selenium project
 
@@ -10,7 +10,7 @@
 |--:|:--|
 | coverage : | [![istanbul-coverage](https://npmtest.github.io/node-npmtest-selenium-webdriver/build/coverage.badge.svg)](https://npmtest.github.io/node-npmtest-selenium-webdriver/build/coverage.html/index.html)|
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-selenium-webdriver/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-selenium-webdriver/build/test-report.html)|
-| build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-selenium-webdriver/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-selenium-webdriver/tree/gh-pages/build)|
+| test-server-github : | [![github.com test-server](https://npmtest.github.io/node-npmtest-selenium-webdriver/GitHub-Mark-32px.png)](https://npmtest.github.io/node-npmtest-selenium-webdriver/build/app/index.html) | | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-selenium-webdriver/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-selenium-webdriver/tree/gh-pages/build)|
 
 - [https://npmtest.github.io/node-npmtest-selenium-webdriver/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-selenium-webdriver/build/coverage.html/index.html)
 
@@ -55,8 +55,8 @@
     },
     "directories": {},
     "dist": {
-        "shasum": "f14d9b04cee9495d4284d22105b189b8305ccca1",
-        "tarball": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-3.3.0.tgz"
+        "shasum": "151f7445294da6a66c49cc300747a2a17e53c52a",
+        "tarball": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-3.4.0.tgz"
     },
     "engines": {
         "node": ">= 6.9.0"
@@ -85,7 +85,8 @@
     "scripts": {
         "test": "mocha -t 600000 --recursive test"
     },
-    "version": "3.3.0"
+    "version": "3.4.0",
+    "bin": {}
 }
 ```
 
