@@ -4,7 +4,7 @@
 <tspan x="10" y="26">11 megabytes installed</tspan>
 <tspan x="10" y="42"></tspan>
 <tspan x="10" y="58">node_modules</tspan>
-<tspan x="10" y="74">└─┬ selenium-webdriver@3.3.0 </tspan>
+<tspan x="10" y="74">└─┬ selenium-webdriver@3.4.0 </tspan>
 <tspan x="10" y="90">  ├── adm-zip@0.4.7 </tspan>
 <tspan x="10" y="106">  ├─┬ rimraf@2.6.1 </tspan>
 <tspan x="10" y="122">  │ └─┬ glob@7.1.1 </tspan>
